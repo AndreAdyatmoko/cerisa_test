@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [userToken, setUserToken] = useState(""); // Add userToken state
+  const [userToken, setUserToken] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -34,10 +34,11 @@ const LoginPage = () => {
 
       const user = response.data.user;
       const token = response.data.token;
+      localStorage.setItem("token", token);
       dispatch(setUser(user));
       dispatch(setToken(token));
-      setUserToken(token); // Store the token
-      setLoginSuccess(true); // Set login success to true
+      setUserToken(token); 
+      setLoginSuccess(true); 
     } catch (error) {
       console.log("Login Error:", error);
     }
